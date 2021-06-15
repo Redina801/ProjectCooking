@@ -1,0 +1,262 @@
+ <img  src="\assets\back.jpg" class="yourclass"/>
+  
+
+<div style="padding-right:15px;" class="container-fluid">
+   <div class="intern">
+         <div class="row">
+           <div class="col">
+             <h1>Add Recipe</h1>
+             <hr>
+           </div>
+         </div>
+         
+       
+         <div class="row">
+           <form action="" style="width:100%;" [formGroup]="nestedForm">
+             <div class="col">
+       
+               <div class="row">
+                          <label for="recId"></label>
+                         <input type="hidden" formControlName="recId" [ngClass]="{'form-control': true,
+                         'is-invalid': recId.invalid && recId.touched,
+                         'is-valid': recId.valid}" id="recId" >
+                         
+
+                 <div class="col-6">
+                   <div class="form-group">
+                     <label for="name"> Name</label>
+                     <input type="text" formControlName="name" [ngClass]="{'form-control': true,
+                     'is-invalid': name.invalid && name.touched,
+                     'is-valid': name.valid}" id="name" placeholder="Enter name of Equipment">
+                     <small id="fnHelp" *ngIf="name.errors?.required && name.touched" class="form-text custom-invalid-feedback">Field is required</small>
+                     <small id="fnHelp" *ngIf="name.errors?.minlength && name.touched" class="form-text custom-invalid-feedback">Value must contain atleast 2 characters</small>
+                   </div>
+                 </div>
+                
+
+                 <div class="col-6">
+                  <div class="form-group">
+                    <label for="prepTime">Preparation Time</label>
+                    <input type="text" formControlName="prepTime" [ngClass]="{'form-control': true,
+                    'is-invalid': prepTime.invalid && prepTime.touched,
+                    'is-valid': prepTime.valid}" id="prepTime" placeholder="Enter the preparation time!">
+                    <small id="fnHelp" *ngIf="prepTime.errors?.required && prepTime.touched" class="form-text custom-invalid-feedback">Field is required</small>
+                    <small id="fnHelp" *ngIf="prepTime.errors?.minlength && prepTime.touched" class="form-text custom-invalid-feedback">Value must contain atleast 2 characters</small>
+                  </div>
+                </div>
+
+                
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="cookTime"> Cooking Time</label>
+                    <input type="text" formControlName="cookTime" [ngClass]="{'form-control': true,
+                    'is-invalid': cookTime.invalid && cookTime.touched,
+                    'is-valid': cookTime.valid}" id="cookTime" placeholder="Enter cooking time!">
+                    <small id="fnHelp" *ngIf="cookTime.errors?.required && cookTime.touched" class="form-text custom-invalid-feedback">Field is required</small>
+                    <small id="fnHelp" *ngIf="cookTime.errors?.minlength && cookTime.touched" class="form-text custom-invalid-feedback">Value must contain atleast 2 characters</small>
+                  </div>
+                </div>
+
+
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="totalTime"> Total Time</label>
+                    <input type="text" formControlName="totalTime" [ngClass]="{'form-control': true,
+                    'is-invalid': totalTime.invalid && totalTime.touched,
+                    'is-valid': totalTime.valid}" id="totalTime" placeholder="Enter total time!">
+                    <small id="fnHelp" *ngIf="totalTime.errors?.required && totalTime.touched" class="form-text custom-invalid-feedback">Field is required</small>
+                    <small id="fnHelp" *ngIf="totalTime.errors?.minlength && totalTime.touched" class="form-text custom-invalid-feedback">Value must contain atleast 2 characters</small>
+                  </div>
+                </div>
+
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="calories"> Calories</label>
+                    <input type="text" formControlName="calories" [ngClass]="{'form-control': true,
+                    'is-invalid': calories.invalid && calories.touched,
+                    'is-valid': calories.valid}" id="calories" placeholder="Enter total calories!">
+                    <small id="fnHelp" *ngIf="calories.errors?.required && calories.touched" class="form-text custom-invalid-feedback">Field is required</small>
+                    <small id="fnHelp" *ngIf="calories.errors?.minlength && calories.touched" class="form-text custom-invalid-feedback">Value must contain atleast 2 characters</small>
+                  </div>
+                </div>
+
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="category"> Category</label>
+                    <input type="text" formControlName="category" [ngClass]="{'form-control': true,
+                    'is-invalid': category.invalid && category.touched,
+                    'is-valid': category.valid}" id="category" placeholder="Enter Category">
+                    <small id="fnHelp" *ngIf="category.invalid && category.touched" class="form-text custom-invalid-feedback">Field is required</small>
+                  </div>
+                </div>
+
+                
+               </div>
+       
+       
+
+
+
+
+               <div class="row">
+                 <div class="col">
+                   <hr>
+                   <p> <button (click)="addIngredient()">Add Ingredient </button></p>
+                 </div>
+               </div>
+       
+       
+               <div class="row" formArrayName="ingredients">
+                 <div class="col-12" *ngFor="let group of ingredientArray.controls; let i = index;" [formGroupName]="i">
+                   <div class="row">
+                     <div class="col-12">
+                       <div class="row">
+                         <div class="col-8">
+                           <h4>Ingredient {{i+1}}</h4>
+                         </div>
+                         <div class="col-4 control-buttons">
+                              
+                              <button  (click)="removeIngredient(i)">Remove Ingredient</button>
+                         </div>
+                       </div>
+                       <hr>
+                     </div>
+                     
+                     
+                         <label for="id"></label>
+                         <input type="hidden" formControlName="id" [ngClass]="{'form-control': true,
+                             'is-invalid': group.controls.id.invalid && group.controls.id.touched,
+                             'is-valid': group.controls.id.valid}" id="id" >
+                       
+  
+                     <div class="col-12">
+                       <div class="form-group">
+                         <label for="name"> Name</label>
+                         <input type="text" formControlName="name" [ngClass]="{'form-control': true,
+                             'is-invalid': group.controls.name.invalid && group.controls.name.touched,
+                             'is-valid': group.controls.name.valid}" id="name" placeholder="Enter attribute name">
+                         <!-- <small *ngIf="group.controls.name.invalid && group.controls.name.touched" class="form-text custom-invalid-feedback">Field is required</small> -->
+                       </div>
+                     </div>
+  
+                     <div class="col-12">
+                       <div class="row">
+                        
+  
+                        
+                    
+                           
+
+
+                            <label for="recipeId"></label>
+                         <input type="hidden" formControlName="recipeId" [ngClass]="{'form-control': true,
+                             'is-invalid': group.controls.recipeId.invalid && group.controls.recipeId.touched,
+                             'is-valid': group.controls.recipeId.valid}" id="recipeId" >
+                       
+                         
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+       
+
+
+               
+
+               <div class="row">
+                <div class="col">
+                  <hr>
+                  <p> <button (click)="addPhoto()">Add Photo </button></p>
+                </div>
+              </div>
+      
+      
+              <div class="row" formArrayName="photos">
+                <div class="col-12" *ngFor="let group of photoArray.controls; let j = index;" [formGroupName]="j" >
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-8">
+                          <h4>Photo {{j+1}}</h4>
+                        </div>
+                        <div class="col-4 control-buttons">
+                             
+                             <button  (click)="removePhoto(j)">Remove Photo</button>
+                        </div>
+                      </div>
+                      <hr>
+                    </div>
+                    
+                    
+                        <label for="id"></label>
+                        <input type="hidden" formControlName="id" [ngClass]="{'form-control': true,
+                            'is-invalid': group.controls.id.invalid && group.controls.id.touched,
+                            'is-valid': group.controls.id.valid}" id="id" >
+                      
+ 
+
+                    <div class="col-12">
+                      <div class="form-group">
+
+                        <label for="file">Image</label>
+                        <img [src]="url" height="200"> <br/>
+
+                        <input type="file" formControlName="file" accept="image/*" (change)="updateFile($event)"
+                        [ngClass]="{'form-control': true,
+                            'is-invalid': group.controls.file.invalid && group.controls.file.touched,
+                            'is-valid': group.controls.file.valid}" id="file" required >
+                      </div>
+                    </div>
+ 
+
+                    <div class="col-12">
+                      <div class="row">
+                       
+ 
+                       
+                     <label for="recipeId"></label>
+                        <input type="hidden" formControlName="recipeId" [ngClass]="{'form-control': true,
+                            'is-invalid': group.controls.recipeId.invalid && group.controls.recipeId.touched,
+                            'is-valid': group.controls.recipeId.valid}" id="recipeId" >
+                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+     
+             <div class="row">
+               <div class="col">
+                 <hr>
+               </div>
+             </div>
+
+
+
+
+ 
+       
+               <div class="row justify-content-center">
+                 <div class="col-2">
+                   <button type="button"  (click)="submitHandler()" class="btn btn-primary">Submit</button>
+                 </div>
+               </div>
+             </div>
+           </form>
+         </div>
+       </div>
+  
+  </div>
+
+
+

@@ -1,0 +1,35 @@
+
+ <img  src="\assets\home.jpeg" />
+
+
+<div  class="yourclass">
+
+ <!-- End Navbar -->
+ <div class="content">
+    <div *ngFor="let recipe of recipes" class="container-fluid">
+      <div class="">
+        <div class="">
+          <div   class="card card-stats">
+            <div  class="card-header card-header-warning card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">
+                <img [src]="recipe.photos[0].file" class="image1"> 
+                </i>
+              </div>
+              <p class="card-category">{{recipe.name}}</p>
+              
+              <h3 class="card-title">
+                <small></small>
+              </h3>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons text-danger">warning</i>
+                <a href="javascript:;">Get More Space...</a>
+                <button (click)="display()">showwww</button>
+              </div>
+            </div> 
+          </div>
+        </div>
+
+      </div>
